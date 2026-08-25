@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: backend
+
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/hackathon}
+    username: ${DB_USERNAME:hackathon}
+    password: ${DB_PASSWORD:hackathon}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+# Active RoutingStrategy bean name; flip at runtime via
+# PATCH /config/routing-strategy without a restart.
+routing:
+  strategy: ${ROUTING_STRATEGY:rule-based}
+
+llm:
+  ollama:
+    base-url: ${OLLAMA_BASE_URL:http://localhost:11434}
+    model: ${OLLAMA_MODEL:qwen3:14b}
+    timeout: ${OLLAMA_TIMEOUT:30s}
+
+# Origin allowed to call this API from a browser (the ops UI). Override in
+# any environment where the UI isn't served from localhost:4200.
+cors:
+  allowed-origin: ${CORS_ALLOWED_ORIGIN:http://localhost:4200}

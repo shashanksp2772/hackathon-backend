@@ -1,0 +1,13 @@
+# Activated via SPRING_PROFILES_ACTIVE=prod. Not the default - local dev
+# and CI both want Swagger UI and verbose logs available.
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
+
+logging:
+  level:
+    root: WARN
+    com.hackathon.backend: INFO
+    org.hibernate.SQL: WARN
